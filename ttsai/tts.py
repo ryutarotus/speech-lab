@@ -15,17 +15,18 @@ import librosa
 # Pythonで学ぶ音声合成
 #import ttslearn
 #import matplotlib.pyplot as plt
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
+#from sklearn.decomposition import PCA
+#from sklearn.preprocessing import StandardScaler
 import joblib
 #from ttslearn.util import find_lab, find_feats
 from ttslearn.tacotron.frontend.openjtalk import text_to_sequence, pp_symbols
 import pyopenjtalk
-from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForXVector
+#from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForXVector
 from .models.models import Tacotron2, ParallelWaveGANGenerator
 
 
 #話者の潜在表現を獲得
+"""
 feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained("anton-l/wav2vec2-base-superb-sv")
 model = Wav2Vec2ForXVector.from_pretrained("anton-l/wav2vec2-base-superb-sv")
 def wav2sp_emb(wav_file):
@@ -48,7 +49,7 @@ def wav2sp_emb(wav_file):
     pca_feats = sc.transform(pca_feats)[0]
     pca_feats = torch.tensor(pca_feats)
     return pca_feats
-
+"""
 @torch.no_grad()
 def gen_waveform(wavenet_model, out_feats):
     gen_wav = wavenet_model.inference(c=out_feats, x=None)
