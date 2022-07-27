@@ -1,13 +1,12 @@
 Django==3.1
 psycopg2
-psycopg2-binary>=2.8
 django-widget-tweaks 
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.7.1+cpu
 scipy
 librosa
-transformers
-sklearn
+#transformers
+#sklearn
 ttslearn
 django-heroku
 gunicorn
