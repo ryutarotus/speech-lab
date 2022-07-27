@@ -1,0 +1,1 @@
+web: gunicorn ttsproject.wsgi --log-file -

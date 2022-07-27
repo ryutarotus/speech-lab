@@ -1,0 +1,7 @@
+.bg-img {
+  background-image: url(../img/aozora.jpg);
+  background-size: cover;
+
+  /*透過の設定*/
+  opacity: 0.8;
+}
