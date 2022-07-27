@@ -6,7 +6,7 @@ from django.shortcuts import render,redirect
 from .forms import UploadForm
 from .models import Upload
 from scipy.io.wavfile import write
-from ttsai.tts import tts, wav2sp_emb
+from ttsai.tts import tts#, wav2sp_emb
 
 
 def home_func(request):
