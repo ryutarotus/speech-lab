@@ -7,7 +7,7 @@ scipy
 librosa
 #transformers
 #sklearn
-ttslearn --ignore-installed matplotlib
+ttslearn
 django-heroku
 gunicorn
 whitenoise
