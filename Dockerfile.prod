@@ -16,7 +16,7 @@ RUN apt-get update && \
     apt-get -y install ffmpeg
 
 # pipでrequirements.txtに指定されているパッケージを追加する
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt && pip uninstall matplotlib
 
 COPY . /code/
 
