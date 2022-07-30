@@ -15,7 +15,7 @@ from .parallel_wavegan.layers import Conv1d
 from .parallel_wavegan import upsample
 from .parallel_wavegan.layers import Conv1d1x1
 from .parallel_wavegan.layers import WaveNetResidualBlock as ResidualBlock
-from .parallel_wavegan import models
+#from .parallel_wavegan import models
 
 class Tacotron2(nn.Module):
     """Tacotron 2
@@ -233,14 +233,7 @@ class ParallelWaveGANGenerator(torch.nn.Module):
                 }
             )
             if upsample_net == "MelGANGenerator":
-                assert aux_context_window == 0
-                upsample_params.update(
-                    {
-                        "use_weight_norm": False,  # not to apply twice
-                        "use_final_nonlinear_activation": False,
-                    }
-                )
-                self.upsample_net = getattr(models, upsample_net)(**upsample_params)
+                print('warning: MelGAN is not define')
             else:
                 if upsample_net == "ConvInUpsampleNetwork":
                     upsample_params.update(
