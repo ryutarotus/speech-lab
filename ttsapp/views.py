@@ -1,12 +1,19 @@
-from django.shortcuts import render
-
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render,redirect
 from .forms import UploadForm
 from .models import Upload
 from scipy.io.wavfile import write
 #from ttsai.tts import tts#, wav2sp_emb
+from django.views.decorators.csrf import requires_csrf_token
+
+
+@requires_csrf_token
+def my_customized_server_error(request, template_name='500.html'):
+    import sys
+    from django.views import debug
+    error_html = debug.technical_500_response(request, *sys.exc_info()).content
+    return HttpResponseServerError(error_html)
 
 
 def home_func(request):
