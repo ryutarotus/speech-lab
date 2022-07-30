@@ -6,6 +6,9 @@ python:
 
 sevices: docker
 
+env:
+  - SECRET_KEY=
+
 before_install: #環境構築: dockerで楽できる
   - docker-compose up --build -d
   - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com

@@ -1,5 +1,4 @@
 # 数値演算
-
 import numpy as np
 import torch
 from torch import nn
@@ -18,7 +17,6 @@ import librosa
 #from sklearn.decomposition import PCA
 #from sklearn.preprocessing import StandardScaler
 import joblib
-#from ttslearn.util import find_lab, find_feats
 from ttslearn.tacotron.frontend.openjtalk import text_to_sequence, pp_symbols
 import pyopenjtalk
 #from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForXVector
