@@ -1,5 +1,80 @@
 import re
 
+# 音素 (+pau/sil)
+phonemes = [
+    "A",
+    "E",
+    "I",
+    "N",
+    "O",
+    "U",
+    "a",
+    "b",
+    "by",
+    "ch",
+    "cl",
+    "d",
+    "dy",
+    "e",
+    "f",
+    "g",
+    "gy",
+    "h",
+    "hy",
+    "i",
+    "j",
+    "k",
+    "ky",
+    "m",
+    "my",
+    "n",
+    "ny",
+    "o",
+    "p",
+    "py",
+    "r",
+    "ry",
+    "s",
+    "sh",
+    "t",
+    "ts",
+    "ty",
+    "u",
+    "v",
+    "w",
+    "y",
+    "z",
+    "pau",
+    "sil",
+]
+
+extra_symbols = [
+    "^",  # 文の先頭を表す特殊記号 <SOS>
+    "$",  # 文の末尾を表す特殊記号 <EOS> (通常)
+    "?",  # 文の末尾を表す特殊記号 <EOS> (疑問系)
+    "_",  # ポーズ
+    "#",  # アクセント句境界
+    "[",  # ピッチの上がり位置
+    "]",  # ピッチの下がり位置
+]
+
+_pad = "~"
+
+# NOTE: 0 をパディングを表す数値とする
+symbols = [_pad] + extra_symbols + phonemes
+
+
+_symbol_to_id = {s: i for i, s in enumerate(symbols)}
+_id_to_symbol = {i: s for i, s in enumerate(symbols)}
+
+
+def numeric_feature_by_regex(regex, s):
+    match = re.search(regex, s)
+    if match is None:
+        return -50
+    return int(match.group(1))
+
+
 def pp_symbols(labels, drop_unvoiced_vowels=True):
     """Extract phoneme + prosoody symbol sequence from input full-context labels
 
@@ -84,6 +159,24 @@ def pp_symbols(labels, drop_unvoiced_vowels=True):
 
     return PP
 
+
+
+def num_vocab():
+    """Get number of vocabraries
+
+    Returns:
+        int: Number of vocabraries
+
+    Examples:
+
+        >>> from ttslearn.tacotron.frontend.openjtalk import num_vocab
+        >>> num_vocab()
+        >>> 52
+    """
+    return len(symbols)
+
+
+
 def text_to_sequence(text):
     """Convert phoneme + prosody symbols to sequence of numbers
 
@@ -100,3 +193,22 @@ def text_to_sequence(text):
         >>> [1, 31, 27, 6, 49, 35, 2]
     """
     return [_symbol_to_id[s] for s in text]
+
+
+
+def sequence_to_text(seq):
+    """Convert sequence of numbers to phoneme + prosody symbols
+
+    Args:
+        seq (list): Input sequence of numbers
+
+    Returns:
+        list: List of phoneme + prosody symbols
+
+    Examples:
+
+        >>> from ttslearn.tacotron.frontend.openjtalk import sequence_to_text
+        >>> sequence_to_text([1, 31, 27, 6, 49, 35, 2])
+        >>> ['^', 'm', 'i', '[', 'z', 'o', '$']
+    """
+    return [_id_to_symbol[s] for s in seq]
