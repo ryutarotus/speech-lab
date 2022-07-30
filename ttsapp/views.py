@@ -6,7 +6,7 @@ from .models import Upload
 from scipy.io.wavfile import write
 #from ttsai.tts import tts#, wav2sp_emb
 from django.views.decorators.csrf import requires_csrf_token
-
+from ttsai.tts import tts
 
 @requires_csrf_token
 def my_customized_server_error(request, template_name='500.html'):
@@ -83,7 +83,6 @@ def multi_func(request):
         	})
 
 def demo_func(request):
-    from ttsai.tts import tts
     import os
     import subprocess
 
