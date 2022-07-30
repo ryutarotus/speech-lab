@@ -5,7 +5,7 @@ from torch import nn
 # 音声波形の読み込み
 from scipy.io import wavfile
 # フルコンテキストラベル、質問ファイルの読み込み
-from nnmnkwii.io import hts
+#from nnmnkwii.io import hts
 # 音声分析
 #import pyworld
 # 音声分析、可視化
