@@ -4,17 +4,17 @@ import numpy as np
 import torch
 from torch import nn
 import torch.nn.functional as F
-from ttslearn.tacotron.attention import LocationSensitiveAttention
-from ttslearn.util import make_pad_mask
-from ttslearn.tacotron.encoder import Encoder
-from ttslearn.tacotron.postnet import Postnet
-from ttslearn.tacotron.decoder import Decoder, Prenet, ZoneOutCell, decoder_init
-from ttslearn.util import pad_1d
+from .ttslearn.util import make_pad_mask
+from .ttslearn.tacotron.attention import LocationSensitiveAttention
+from .ttslearn.tacotron.encoder import Encoder
+from .ttslearn.tacotron.postnet import Postnet
+from .ttslearn.tacotron.decoder import Decoder, Prenet, ZoneOutCell, decoder_init
+from .ttslearn.util import pad_1d
 
 #from parallel_wavegan.layers import Conv1d
 #from parallel_wavegan.layers import upsample
-from parallel_wavegan.layers import Conv1d1x1
-from parallel_wavegan.layers import WaveNetResidualBlock as ResidualBlock
+from .parallel_wavegan.layers import Conv1d1x1
+from .parallel_wavegan.layers import WaveNetResidualBlock as ResidualBlock
 #from parallel_wavegan import models
 
 class Tacotron2(nn.Module):
