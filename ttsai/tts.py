@@ -17,11 +17,10 @@ from scipy.io import wavfile
 #from sklearn.decomposition import PCA
 #from sklearn.preprocessing import StandardScaler
 import joblib
-from ttslearn.tacotron.frontend.openjtalk import text_to_sequence, pp_symbols
 import pyopenjtalk
 #from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForXVector
 from .models.models import Tacotron2, ParallelWaveGANGenerator
-
+from .models.ttslearn.tacotron.frontend.openjtalk import text_to_sequence, pp_symbols
 
 #話者の潜在表現を獲得
 """
