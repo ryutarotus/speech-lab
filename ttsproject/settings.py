@@ -145,10 +145,6 @@ if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
     SECRET_KEY = os.environ['SECRET_KEY']
-    print(SECRET_KEY)
-
-SECRET_KEY = 'django-insecure-x8l_^z(4$40b@7_mu($i5k_+@9nqti#ej$%f9o98^#y)*&kt3+'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
