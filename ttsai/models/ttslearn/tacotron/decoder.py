@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 from torch import nn
-from attention import LocationSensitiveAttention
+from .attention import LocationSensitiveAttention
 
 def make_pad_mask(lengths, maxlen=None):
     """Make mask for padding frames

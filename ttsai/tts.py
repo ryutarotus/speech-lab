@@ -19,8 +19,9 @@ from scipy.io import wavfile
 import joblib
 import pyopenjtalk
 #from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForXVector
-from .models.models import Tacotron2, ParallelWaveGANGenerator
 from .models.ttslearn.tacotron.frontend.openjtalk import text_to_sequence, pp_symbols
+from .models.models import Tacotron2, ParallelWaveGANGenerator
+
 
 #話者の潜在表現を獲得
 """
