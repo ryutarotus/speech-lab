@@ -152,15 +152,14 @@ SECRET_KEY = 'django-insecure-x8l_^z(4$40b@7_mu($i5k_+@9nqti#ej$%f9o98^#y)*&kt3+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') #added for heroku 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #added for heroku 
 STATIC_URL = '/static/'
 
-"""
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-"""
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type

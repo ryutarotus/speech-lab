@@ -7,12 +7,12 @@ scipy
 librosa
 #transformers
 #sklearn
-ttslearn
+#ttslearn
 django-heroku
 gunicorn
 whitenoise
 pytz
 sqlparse
 dj-database-url==0.5.0
-
+heroku
 
