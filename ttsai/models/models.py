@@ -11,11 +11,11 @@ from .ttslearn.tacotron.postnet import Postnet
 from .ttslearn.tacotron.decoder import Decoder, Prenet, ZoneOutCell, decoder_init
 from .ttslearn.util import pad_1d
 
-#from parallel_wavegan.layers import Conv1d
-#from parallel_wavegan.layers import upsample
+from .parallel_wavegan.layers import Conv1d
+from .parallel_wavegan import upsample
 from .parallel_wavegan.layers import Conv1d1x1
 from .parallel_wavegan.layers import WaveNetResidualBlock as ResidualBlock
-#from parallel_wavegan import models
+from .parallel_wavegan import models
 
 class Tacotron2(nn.Module):
     """Tacotron 2
