@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from ttsproject.views import my_customized_server_error
+import sys
+sys.path.append('../')
+from ttsapp.views import my_customized_server_error
 
 urlpatterns = [
     path('admin/', admin.site.urls),
