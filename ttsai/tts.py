@@ -9,7 +9,7 @@ from scipy.io import wavfile
 # 音声分析
 #import pyworld
 # 音声分析、可視化
-import librosa
+#import librosa
 #import librosa.display
 # Pythonで学ぶ音声合成
 #import ttslearn
