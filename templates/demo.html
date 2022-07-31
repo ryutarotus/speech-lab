@@ -39,6 +39,10 @@
       </form>
       {% if request.method == 'POST' %}
           <h2>結果</h2>
+          <!--<p>/{{ file_name }}</p>-->
+          <audio autoplay>
+            <source src="/{{ file_name }}">
+          </audio>
           <p><audio src="/{{ file_name }}" controls></p>
       {% endif %}
     </main>

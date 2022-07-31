@@ -104,7 +104,7 @@ def demo_func(request):
         text=request.POST['text']
         gen_wav = tts(text=text)
 
-        f_output = f'{source}gen.wav'
+        f_output = f'{source}gen_test.wav'
 
         write(f"{f_output}", 24000, gen_wav)
 
