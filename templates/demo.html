@@ -39,7 +39,6 @@
       </form>
       {% if request.method == 'POST' %}
           <h2>結果</h2>
-          <p>dir = {{ file_name }}</p>
           <p><audio src="/{{ file_name }}" controls></p> <!--mediaにパスを通す ../{{}}-->
       {% endif %}
     </main>
