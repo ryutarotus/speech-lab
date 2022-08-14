@@ -16,3 +16,4 @@ sqlparse
 dj-database-url==0.5.0
 heroku
 pyopenjtalk
+cloudinary

@@ -40,10 +40,10 @@
       {% if request.method == 'POST' %}
           <h2>結果</h2>
           <!--<p>/{{ file_name }}</p>-->
-          <audio autoplay>
+          <!--<audio autoplay>
             <source src="/{{ file_name }}">
-          </audio>
-          <p><audio src="/{{ file_name }}" controls></p>
+          </audio>-->
+          <p><audio src="{{ data_uri }}" controls></p>
       {% endif %}
     </main>
 </body>

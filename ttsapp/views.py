@@ -85,6 +85,8 @@ def multi_func(request):
 def demo_func(request):
     import os
     import subprocess
+    from sklearn.preprocessing import StandardScaler
+    import base64
 
     #保存PATH
     source = "media/media/"    
@@ -106,12 +108,28 @@ def demo_func(request):
 
         f_output = f'{source}gen_test.wav'
 
-        write(f"{f_output}", 24000, gen_wav)
+        data_format = b'data:audio/wav;base64,'
+
+        wav_format = b'RIFF\x96P\x06\x00WAVEfmt \x10\x00\x00\x00\x01\x00\x01\x00\xc0]\x00\x00\x80\xbb\x00\x00\x02\x00\x10\x00datarP\x06\x00'
+
+        scaler = StandardScaler()
+        scaler.fit(gen_wav.reshape(-1, 1))
+
+        norm_wav = scaler.transform(gen_wav.reshape(-1, 1)).squeeze()
+
+        norm_wav = norm_wav * 1700
+        ndarr = norm_wav.astype('int16')
+        to_bytes = ndarr.tobytes('F')
+        data = base64.b64encode(wav_format + to_bytes)
+        data_uri = data_format + data
+
+        #write(f"{f_output}", 24000, gen_wav)
 
         return render(request, 'demo.html', {
         'form': form,
-        'file_name': f_output,
+        'file_name': f_output, #f_output,
         'tts_result':'coming soon',
+        'data_uri': data_uri.decode(),
     })
     else:
         form = UploadForm()
