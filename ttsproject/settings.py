@@ -146,6 +146,7 @@ if not DEBUG:
     django_heroku.settings(locals())
     SECRET_KEY = os.environ['SECRET_KEY']
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -168,4 +169,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'

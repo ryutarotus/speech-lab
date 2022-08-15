@@ -1,16 +1,15 @@
 # 数値演算
-
 import numpy as np
 import torch
 from torch import nn
 # 音声波形の読み込み
 from scipy.io import wavfile
 # フルコンテキストラベル、質問ファイルの読み込み
-from nnmnkwii.io import hts
+#from nnmnkwii.io import hts
 # 音声分析
 #import pyworld
 # 音声分析、可視化
-import librosa
+#import librosa
 #import librosa.display
 # Pythonで学ぶ音声合成
 #import ttslearn
@@ -18,10 +17,9 @@ import librosa
 #from sklearn.decomposition import PCA
 #from sklearn.preprocessing import StandardScaler
 import joblib
-#from ttslearn.util import find_lab, find_feats
-from ttslearn.tacotron.frontend.openjtalk import text_to_sequence, pp_symbols
 import pyopenjtalk
 #from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForXVector
+from .models.ttslearn.tacotron.frontend.openjtalk import text_to_sequence, pp_symbols
 from .models.models import Tacotron2, ParallelWaveGANGenerator
 
 

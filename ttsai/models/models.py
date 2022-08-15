@@ -4,18 +4,18 @@ import numpy as np
 import torch
 from torch import nn
 import torch.nn.functional as F
-from ttslearn.tacotron.attention import LocationSensitiveAttention
-from ttslearn.util import make_pad_mask
-from ttslearn.tacotron.encoder import Encoder
-from ttslearn.tacotron.postnet import Postnet
-from ttslearn.tacotron.decoder import Decoder, Prenet, ZoneOutCell, decoder_init
-from ttslearn.util import pad_1d
+from .ttslearn.util import make_pad_mask
+from .ttslearn.tacotron.attention import LocationSensitiveAttention
+from .ttslearn.tacotron.encoder import Encoder
+from .ttslearn.tacotron.postnet import Postnet
+from .ttslearn.tacotron.decoder import Decoder, Prenet, ZoneOutCell, decoder_init
+from .ttslearn.util import pad_1d
 
-from parallel_wavegan.layers import Conv1d
-from parallel_wavegan.layers import Conv1d1x1
-from parallel_wavegan.layers import upsample
-from parallel_wavegan.layers import WaveNetResidualBlock as ResidualBlock
-from parallel_wavegan import models
+from .parallel_wavegan.layers import Conv1d
+from .parallel_wavegan import upsample
+from .parallel_wavegan.layers import Conv1d1x1
+from .parallel_wavegan.layers import WaveNetResidualBlock as ResidualBlock
+#from .parallel_wavegan import models
 
 class Tacotron2(nn.Module):
     """Tacotron 2
@@ -233,14 +233,7 @@ class ParallelWaveGANGenerator(torch.nn.Module):
                 }
             )
             if upsample_net == "MelGANGenerator":
-                assert aux_context_window == 0
-                upsample_params.update(
-                    {
-                        "use_weight_norm": False,  # not to apply twice
-                        "use_final_nonlinear_activation": False,
-                    }
-                )
-                self.upsample_net = getattr(models, upsample_net)(**upsample_params)
+                print('warning: MelGAN is not define')
             else:
                 if upsample_net == "ConvInUpsampleNetwork":
                     upsample_params.update(

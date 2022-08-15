@@ -7,13 +7,13 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
-    <title>author page</title>
+    <title>プロフィール</title>
 
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <!--<link rel="canonical" href="https://getbootstrap.jp/docs/5.0/examples/product/">-->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-    <link rel="icon" href="{% static 'icon/favicon.ico' %}">
+
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" sizes="32x32" />
 
     <!-- Bootstrap core CSS -->
@@ -59,30 +59,31 @@
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal">Speech Lab</h1>
       <p class="lead fw-normal">TUS Speech Lab</p>
-      <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+      <a class="btn btn-outline-primary" href="/demo">音声合成を試す</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
 
     <div class="container my-3 p-3 bg-body rounded shadow-sm">
-    <h5 class="border-bottom pb-2 mb-0">Author</h5>
-    <div class="d-flex text-muted pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark">aaa</strong>
-        aaa
-      </p>
-    </div>
-    <div class="d-flex text-muted pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"/><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
-
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark">@username</strong>
-        Some more representative placeholder content, related to this other user. Another status update, perhaps.
-      </p>
-    </div>
+      <h5 class="border-bottom pb-2 mb-0">Author</h5>
+      <h6 class="border-bottom ps-3 py-2 mb-0">Profile</h6>
+      <div class="ps-4">
+        <div class="d-flex text-muted pt-3 ">
+          <p class="pb-3 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark mb-1">名前</strong>
+            松永隆太郎 Matsunaga Ryutaro
+          </p>
+        </div>
+      </div>
+      <div class="ps-4">
+        <div class="d-flex text-muted pt-3 ">
+          <p class="pb-3 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark mb-1">所属</strong>
+            東京理科大学 理学研究科 応用数学専攻 松崎研究室
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="container my-3 p-3 bg-body rounded shadow-sm">
@@ -109,37 +110,41 @@
         </center>
         <center class="ms-3">
         <i class="fa-brands fa-js fa-2x"></i>
-        <strong class="d-block text-gray-dark">jQuery</strong>
+        <strong class="d-block text-gray-dark">JavaScript</strong>
         </center>
       </p>
     </div>
 
-    <h6 class="border-bottom ps-3 py-2 mb-0">AI</h6>
+    <h6 class="border-bottom ps-3 py-2 mb-0">AI & Machine Learning</h6>
     <div class="ps-4">
     <div class="d-flex text-muted pt-3 ">
       <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark mb-1">Speech</strong>
-        音声合成 音声超解像
+        <strong class="d-block text-gray-dark mb-1">音声</strong>
+        Tasks: 音声合成 音声超解像 </br>
+        Skills: Transformer GAN PCA etc...
       </p>
     </div>
     <div class="d-flex text-muted pt-3 ">
       <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark mb-1">NLP</strong>
-        文書分類
-      </p>
-    </div>
-    <div class="d-flex text-muted pt-3 ">
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark mb-1">Computer Vision</strong>
-        画像超解像 画像生成 画像分類
+        <strong class="d-block text-gray-dark mb-1">自然言語処理</strong>
+        Tasks: 文書分類 </br>
+        Skills: Transformer BERT LSTM etc...
       </p>
     </div>
     <div class="d-flex text-muted pt-3 mb-3">
       <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark mb-1">Data Analysis</strong>
-        クラスタリング
+        <strong class="d-block text-gray-dark mb-1">画像処理</strong>
+        Tasks: 画像超解像 画像生成 画像分類 </br>
+        Skills: GAN VAE CNN etc...
       </p>
     </div>
+    <!--<div class="d-flex text-muted pt-3 mb-3">
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark mb-1">Data Analysis</strong>
+        Tasks: クラスタリング </br>
+        Skills: 
+      </p>
+    </div>-->
     </div>
 
     <h6 class="border-top border-bottom ps-3 py-2 mb-0">Web</h6>
@@ -148,7 +153,7 @@
         <p class="pb-3 mb-0 small lh-sm border-bottom">
           <strong class="d-block text-gray-dark mb-1">音声合成サイト</strong>
         テキストを入力して、入力したテキストを読み上げる </br>
-          <a class="link-secondary text-decoration-none mt-1" href="/home">音声合成を試す</a>
+          <a class="text-light link-secondary text-decoration-none mt-1 badge bg-secondary text-wrap" href="/demo">音声合成を試す</a>
         </p>
       </div>
     </div>
@@ -158,15 +163,14 @@
     <h5 class="border-bottom pb-2 mb-0">Research</h5>
     <div class="d-flex text-muted pt-3">
 
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
+      <p class="pb-3 mb-0 small ps-3 lh-sm border-bottom">
         <strong class="d-block text-gray-dark mb-1">制御可能な音声合成</strong>
         声質を自由に調整することが可能な音声合成を目指して現在研究をしています。</br>
-        研究成果はWeb状にアプリケーションとして公開しており、進展があればその都度更新をしていきます。
       </p>
     </div>
     <div class="d-flex text-muted pt-3">
 
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
+      <p class="pb-3 mb-0 small ps-3 lh-sm border-bottom">
         <strong class="d-block text-gray-dark mb-1">非可逆圧縮を施した音声の深層学習による復元</strong>
       MP3などの非可逆圧縮された音声を深層学習によって圧縮前の音声に復元する研究を学部生時代に行なっていました。</br>
         低音質の音声を入力として受け取り高音質の音声を出力する音声超解像を応用した研究です。
@@ -187,12 +191,10 @@
       <h5>Resources</h5>
       <ul class="list-unstyled text-small">
         <li><a class="link-secondary" href="#">github</a></li>
-        <li><a class="link-secondary" href="#">Resource</a></li>
-        <li><a class="link-secondary" href="#">Another resource</a></li>
-        <li><a class="link-secondary" href="#">Final resource</a></li>
+        <li><a class="link-secondary" href="#">Twitter</a></li>
       </ul>
     </div>
-    <div class="col-6 col-md">
+    <!--<div class="col-6 col-md">
       <h5>About</h5>
       <ul class="list-unstyled text-small">
         <li><a class="link-secondary" href="#">Team</a></li>
@@ -200,7 +202,7 @@
         <li><a class="link-secondary" href="#">Privacy</a></li>
         <li><a class="link-secondary" href="#">Terms</a></li>
       </ul>
-    </div>
+    </div>-->
   </div>
 </footer>
 
