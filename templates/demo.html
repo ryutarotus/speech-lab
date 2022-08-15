@@ -27,6 +27,7 @@
           <h1 class="display-4 fst-italic ">Single Speaker TTS</h1>
           <p class="lead my-3">生成したいテキストを入力してください。</p>
           <p class="lead my-3">入力が完了したら開始ボタンを押してください。</p>
+          <p class="lead my-3">※メモリの関係上、最大20文字程度でお願いします。</p>
         </div>
       </div>
 
@@ -34,16 +35,23 @@
         {% csrf_token %}
         {% load widget_tweaks %}
         <!--<p class="" >{{ form.document|add_class:"form-control" }}</p>-->
-        <p class="my-4">{{ form.text }} 　テキストを入力してください</p>
+        <p class="my-4">{{ form.text }} 　テキストを入力してください </p>
         <button class="btn btn-dark btn-lg ms-3 mb-3" type="submit">音声を生成</button>
+        {% if request.method == 'POST'%}
+          {% if text_len > max_len %}
+            <p class="text-danger">※メモリの関係上、最大20文字程度でお願いします。</p>
+          {% endif %}
+        {% endif %}
       </form>
-      {% if request.method == 'POST' %}
-          <h2>結果</h2>
-          <!--<p>/{{ file_name }}</p>-->
-          <!--<audio autoplay>
-            <source src="/{{ file_name }}">
-          </audio>-->
-          <p><audio src="{{ data_uri }}" controls></p>
+      {% if request.method == 'POST'%}
+          {% if text_len <= max_len %}
+            <h2>結果</h2>
+            <!--<p>/{{ file_name }}</p>-->
+            <!--<audio autoplay>
+              <source src="/{{ file_name }}">
+            </audio>-->
+            <p><audio src="{{ data_uri }}" controls></p>
+          {% endif %}
       {% endif %}
     </main>
 </body>

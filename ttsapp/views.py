@@ -17,10 +17,10 @@ def my_customized_server_error(request, template_name='500.html'):
 
 
 def home_func(request):
-	return render(request, 'home.html')
+    return render(request, 'home.html')
 
 def author_func(request):
-	return render(request, 'author.html')
+    return render(request, 'author.html')
 
 def multi_func(request):
     import os
@@ -33,11 +33,11 @@ def multi_func(request):
     speech_result = ""
 
     if request.method == 'POST':
-    	#フォルダーの初期化
+        #フォルダーの初期化
         
         cmd = f'rm -r {source}*'
         subprocess.call(cmd, shell=True)
-    	
+        
         #アップロードファイルの保存
         form = UploadForm(request.POST,request.FILES)
         form.save()
@@ -78,9 +78,9 @@ def multi_func(request):
     else:
         form = UploadForm()
         return render(request, 'multi.html', {
-        	'tts_result': 'coming soon',
-        	'form': form,
-        	})
+            'tts_result': 'coming soon',
+            'form': form,
+            })
 
 def demo_func(request):
     import os
@@ -95,48 +95,53 @@ def demo_func(request):
     speech_result = ""
 
     if request.method == 'POST':
-    	#フォルダーの初期化
-        cmd = f'rm -r {source}*'
-        subprocess.call(cmd, shell=True)
-    	
+        
         #アップロードファイルの保存
         form = UploadForm(request.POST,request.FILES)
         form.save()
 
         text=request.POST['text']
-        gen_wav = tts(text=text)
 
-        f_output = f'{source}gen_test.wav'
+        text_len = len(text)
 
-        data_format = b'data:audio/wav;base64,'
+        max_len = 25
 
-        wav_format = b'RIFF\x96P\x06\x00WAVEfmt \x10\x00\x00\x00\x01\x00\x01\x00\xc0]\x00\x00\x80\xbb\x00\x00\x02\x00\x10\x00datarP\x06\x00'
+        data_uri = b''
 
-        scaler = StandardScaler()
-        scaler.fit(gen_wav.reshape(-1, 1))
+        if text_len <= max_len:
 
-        norm_wav = scaler.transform(gen_wav.reshape(-1, 1)).squeeze()
+            gen_wav = tts(text=text)
 
-        norm_wav = norm_wav * 1700
-        ndarr = norm_wav.astype('int16')
-        to_bytes = ndarr.tobytes('F')
-        data = base64.b64encode(wav_format + to_bytes)
-        data_uri = data_format + data
+            data_format = b'data:audio/wav;base64,'
+
+            wav_format = b'RIFF\x96P\x06\x00WAVEfmt \x10\x00\x00\x00\x01\x00\x01\x00\xc0]\x00\x00\x80\xbb\x00\x00\x02\x00\x10\x00datarP\x06\x00'
+
+            scaler = StandardScaler()
+            scaler.fit(gen_wav.reshape(-1, 1))
+
+            norm_wav = scaler.transform(gen_wav.reshape(-1, 1)).squeeze()
+
+            norm_wav = norm_wav * 2500
+            ndarr = norm_wav.astype('int16')
+            to_bytes = ndarr.tobytes('F')
+            data = base64.b64encode(wav_format + to_bytes)
+            data_uri = data_format + data
 
         #write(f"{f_output}", 24000, gen_wav)
 
         return render(request, 'demo.html', {
         'form': form,
-        'file_name': f_output, #f_output,
         'tts_result':'coming soon',
         'data_uri': data_uri.decode(),
+        'text_len': text_len,
+        'max_len': max_len, 
     })
     else:
         form = UploadForm()
         return render(request, 'demo.html', {
-        	'tts_result': 'coming soon',
-        	'form': form,
-        	})
+            'tts_result': 'coming soon',
+            'form': form,
+            })
 
 
 
