@@ -143,5 +143,69 @@ def demo_func(request):
             'form': form,
             })
 
+def control_func(request):
+    import os
+    import subprocess
+    from sklearn.preprocessing import StandardScaler
+    import base64
+
+    #保存PATH
+    source = "media/media/"    
+
+    #結果保存
+    speech_result = ""
+
+    if request.method == 'POST':
+        
+        #アップロードファイルの保存
+        form = UploadForm(request.POST,request.FILES)
+        form.save()
+
+        text=request.POST['text']
+
+        bar1_val = request.POST['bar1']
+
+        text_len = len(text)
+
+        max_len = 25
+
+        data_uri = b''
+
+        if text_len <= max_len:
+
+            gen_wav = tts(text=text)
+
+            data_format = b'data:audio/wav;base64,'
+
+            wav_format = b'RIFF\x96P\x06\x00WAVEfmt \x10\x00\x00\x00\x01\x00\x01\x00\xc0]\x00\x00\x80\xbb\x00\x00\x02\x00\x10\x00datarP\x06\x00'
+
+            scaler = StandardScaler()
+            scaler.fit(gen_wav.reshape(-1, 1))
+
+            norm_wav = scaler.transform(gen_wav.reshape(-1, 1)).squeeze()
+
+            norm_wav = norm_wav * 2500
+            ndarr = norm_wav.astype('int16')
+            to_bytes = ndarr.tobytes('F')
+            data = base64.b64encode(wav_format + to_bytes)
+            data_uri = data_format + data
+
+        #write(f"{f_output}", 24000, gen_wav)
+
+        return render(request, 'control.html', {
+        'form': form,
+        'tts_result':'coming soon',
+        'data_uri': data_uri.decode(),
+        'text_len': text_len,
+        'max_len': max_len, 
+        'POST': bar1_val,
+    })
+    else:
+        form = UploadForm()
+        return render(request, 'control.html', {
+            'tts_result': 'coming soon',
+            'form': form,
+            })
+
 
 

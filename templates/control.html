@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>テキスト読み上げAI</title>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" sizes="32x32" />
+</head>
+<body>
+  <header class="sticky-top bg-dark">
+      <div class="d-flex flex-column flex-md-row align-items-center pb-1 mb-4 border-bottom">
+      <a href="/Home" class="d-flex align-items-center text-decoration-none text-light">
+        <span class="fs-4 ms-3">Text To Speech</span>
+      </a>
+
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-decoration-none text-white" href="/home">Home</a>
+        <a class="me-3 py-2 text-decoration-none text-white" href="/author">Author</a>
+      </nav>
+      </div>
+  </header>
+    <main class="container">
+      <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+        <div class=" px-0">
+          <h1 class="display-4 fst-italic ">Controllable TTS</h1>
+          <p class="lead my-3">パラメータを調整しSpeakerを決定してください。</p>
+          <p class="lead my-3">生成したいテキストを入力してください。</p>
+          <p class="lead my-3">入力が完了したら開始ボタンを押してください。</p>
+          <p class="lead my-3">※メモリの関係上、最大20文字程度でお願いします。</p>
+        </div>
+      </div>
+
+
+      <form method="post" enctype="multipart/form-data" autocomplete="off" class="text-center">
+        {% csrf_token %}
+        {% load widget_tweaks %}
+      <div class="text-center">
+      女 -2 <input type="range" name="bar1" min="-2.00" max="2.00" step="0.1" id="bar1"> 2 男
+      <p><span id="current-value"></span></p>
+      </div>
+        <!--<p class="" >{{ form.document|add_class:"form-control" }}</p>-->
+        <p class="my-4">{{ form.text }} 　テキストを入力してください </p>
+        <button class="btn btn-dark btn-lg ms-3 mb-3" type="submit">音声を生成</button>
+        {% if request.method == 'POST'%}
+          {% if text_len > max_len %}
+            <p class="text-danger">※メモリの関係上、最大20文字程度でお願いします。</p>
+          {% endif %}
+        {% endif %}
+      </form>
+      {% if request.method == 'POST'%}
+          {% if text_len <= max_len %}
+            <h2>結果</h2>
+            <!--<p>/{{ file_name }}</p>-->
+            <!--<audio autoplay>
+              <source src="/{{ file_name }}">
+            </audio>-->
+            <p><audio src="{{ data_uri }}" controls></p>
+            {{ POST }}
+          {% endif %}
+      {% endif %}
+
+        <script type="text/javascript">
+        const inputElem = document.getElementById('bar1');
+
+        // 埋め込む先の要素
+        const currentValueElem = document.getElementById('current-value');
+
+        // 現在の値を埋め込む関数
+        const setCurrentValue = (val) => {
+          currentValueElem.innerText = val;
+        }
+
+        // inputイベント時に値をセットする関数
+        const rangeOnChange = (e) =>{
+          setCurrentValue(e.target.value);
+        }
+
+        window.onload = () => {
+          // 変更に合わせてイベントを発火する
+          inputElem.addEventListener('input', rangeOnChange);
+          // ページ読み込み時の値をセット
+          setCurrentValue(inputElem.value);
+        }
+      </script>
+    </main>
+</body>
+</html>
