@@ -8,7 +8,7 @@ urlpatterns = [
     path('multi/', multi_func, name="multi"),
     path('home/', home_func, name="home"),
     path('author/', author_func, name="author"),
-    path('control/', control_func, name="author"),
+    #path('control/', control_func, name="control"),
 ]
 
 #handler500 = my_customized_server_error
