@@ -15,16 +15,22 @@ before_install: #環境構築: dockerで楽できる
 
 script:
   - docker-compose ps
+
 #   - docker-compose logs
 #   - docker-compose exec web python manage.py migrate
 #   - docker-compose exec web python manage.py test
 
-# deploy:
-#   prvider: script
-#   script:
-#     docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
-#     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-#     heroku run --app $HEROKU_APP_NAME python manage.py migrate;
-#   on:
-#     branch: master
+deploy:
+  provider: script
+  script: heroku login;
+    heroku git:remote --app $HEROKU_APP_NAME;
+    git push heroku master;
+  """
+  script:
+    docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile.prod .;
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    heroku run --app $HEROKU_APP_NAME python manage.py migrate;
+  """
+  on:
+    branch: master
 
